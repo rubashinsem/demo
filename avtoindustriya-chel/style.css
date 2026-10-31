@@ -20,6 +20,14 @@ h1, h2, h3 { font-family: var(--head); line-height: 1.08; margin: 0; }
 h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -.01em; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
 
+/* плашка демо */
+.demo-bar { position: relative; z-index: 6; background: var(--orange); color: var(--ink); font-size: 14px; line-height: 1.4; }
+.demo-bar__row { display: flex; justify-content: space-between; align-items: center; gap: 8px 24px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+.demo-bar__who { font-weight: 600; white-space: nowrap; }
+.demo-bar ~ .top { position: relative; background: var(--ink); }
+.demo-bar ~ main .hero { padding-top: 56px; }
+@media (max-width: 600px) { .demo-bar { font-size: 13px; } .demo-bar__who { white-space: normal; } }
+
 /* шапка */
 .top { position: absolute; top: 0; left: 0; right: 0; z-index: 5; color: var(--white); }
 .top__row { display: flex; align-items: center; gap: 32px; height: 76px; }
