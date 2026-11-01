@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery Auto Import — привоз автомобилей из Кореи, Челябинск</title>
+<meta name="description" content="Gallery Auto Import: подбор, осмотр, выкуп и доставка автомобилей из Кореи под ключ. Челябинск, ул. Центральная, 10/1. Рейтинг 5.0 в 2ГИС.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0d; --bg2:#141418; --card:#1a1a20; --line:#2a2a33;
+  --text:#f2f2f4; --muted:#9a9aa6; --accent:#d4a24c; --accent2:#f0c674;
+  --r:18px; --max:1180px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:Unbounded,sans-serif;line-height:1.15;font-weight:700}
+h2{font-size:clamp(28px,4vw,44px);margin-bottom:12px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+section{padding:96px 0}
+.eyebrow{color:var(--accent);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin-bottom:12px}
+.lead{color:var(--muted);max-width:620px;font-size:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:999px;font-weight:700;border:0;cursor:pointer;font:inherit;font-weight:700;transition:transform .15s,box-shadow .15s,background .15s}
+.btn-gold{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#141008;box-shadow:0 10px 30px -10px rgba(212,162,76,.6)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 40px -10px rgba(212,162,76,.8)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
+
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:background .2s,backdrop-filter .2s}
+header.scrolled{background:rgba(11,11,13,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font-family:Unbounded;font-weight:700;font-size:18px;letter-spacing:.02em}
+.logo span{color:var(--accent)}
+.nav nav{display:flex;gap:28px;color:var(--muted);font-weight:500}
+.nav nav a:hover{color:var(--text)}
+.nav .tel{font-weight:700;white-space:nowrap}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-gal{padding:10px 18px;font-size:14px}
+@media(max-width:900px){.nav nav{display:none}}
+@media(max-width:520px){.nav .tel{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:140px 0 80px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:url(img/16.jpg) center/cover no-repeat;transform:scale(1.05);animation:zoom 18s ease-out forwards}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,.35) 0%,rgba(11,11,13,.55) 45%,var(--bg) 100%),linear-gradient(90deg,rgba(11,11,13,.85),transparent 70%)}
+@keyframes zoom{to{transform:scale(1)}}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{font-size:clamp(32px,5vw,64px);max-width:900px;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--accent2)}
+.hero .lead{color:#c9c9d1;margin-bottom:36px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:64px;max-width:860px}
+.stats div{background:rgba(20,20,24,.75);backdrop-filter:blur(8px);padding:20px 22px}
+.stats b{display:block;font-family:Unbounded;font-size:28px;color:var(--accent2)}
+.stats span{color:var(--muted);font-size:14px}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px;position:relative;transition:border-color .2s,transform .2s}
+.step:hover{border-color:var(--accent);transform:translateY(-4px)}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:Unbounded;font-size:14px;color:var(--accent);display:block;margin-bottom:18px}
+.step h3{font-size:19px;margin-bottom:8px}
+.step p{color:var(--muted);font-size:15px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* why */
+.why{background:var(--bg2)}
+.why-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.why-img{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
+.why-img img{width:100%;height:100%;object-fit:cover}
+.why ul{list-style:none;padding:0;margin-top:32px;display:grid;gap:22px}
+.why li{display:grid;grid-template-columns:44px 1fr;gap:16px}
+.why li i{width:44px;height:44px;border-radius:12px;background:rgba(212,162,76,.12);color:var(--accent2);display:grid;place-items:center;font-style:normal}
+.why li svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.why li b{display:block;margin-bottom:2px}
+.why li span{color:var(--muted);font-size:15px}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr}.why-img{aspect-ratio:16/10}}
+
+/* gallery */
+.modal.gal-modal{width:min(1180px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto}
+.gal-modal h3{padding-right:48px}
+.gal-modal .close{position:sticky;top:0;float:right;z-index:1;background:var(--bg2)}
+.gallery{columns:4 240px;column-gap:14px;margin-top:24px}
+.gallery button{all:unset;cursor:zoom-in;display:block;margin-bottom:14px;border-radius:14px;overflow:hidden;break-inside:avoid}
+.gallery img{width:100%;transition:transform .4s,filter .4s;filter:saturate(.9)}
+.gallery button:hover img,.gallery button:focus-visible img{transform:scale(1.04);filter:saturate(1.1)}
+.gallery button:focus-visible{outline:2px solid var(--accent2)}
+.more{margin-top:28px;text-align:center}
+
+/* reviews */
+.reviews-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.rating{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 22px}
+.rating b{font-family:Unbounded;font-size:36px;color:var(--accent2)}
+.stars{color:var(--accent2);letter-spacing:2px}
+.rating small{display:block;color:var(--muted)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px}
+.review p{color:#d6d6dc;font-size:15px;flex:1}
+.review footer{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#3a3a46,#24242c);display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--accent2);flex:none}
+.review footer small{display:block;color:var(--muted);font-size:13px}
+@media(max-width:900px){.reviews{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.reviews{grid-template-columns:1fr}}
+
+/* cta */
+.cta{position:relative;border-radius:28px;overflow:hidden;padding:72px 48px;background:radial-gradient(120% 140% at 100% 0%,rgba(212,162,76,.35),transparent 55%),var(--card);border:1px solid var(--line);text-align:center}
+.cta .lead{margin:0 auto 32px}
+@media(max-width:600px){.cta{padding:48px 22px}}
+
+/* contacts */
+.contacts{display:grid;grid-template-columns:1fr 1.4fr;gap:24px;margin-top:48px}
+.info{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px;display:grid;gap:24px;align-content:start}
+.info small{color:var(--muted);display:block;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.info a.big{font-family:Unbounded;font-size:22px}
+.info a:hover{color:var(--accent2)}
+.map{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);min-height:420px}
+.map iframe{width:100%;height:100%;min-height:420px;border:0;filter:grayscale(.3) contrast(1.05)}
+@media(max-width:900px){.contacts{grid-template-columns:1fr}}
+
+footer.site{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
+footer.site .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* dialogs */
+dialog{margin:auto;border:0;padding:0;background:transparent;color:var(--text);max-width:100vw;max-height:100vh}
+dialog::backdrop{background:rgba(0,0,0,.75);backdrop-filter:blur(6px)}
+.modal{background:var(--bg2);border:1px solid var(--line);border-radius:24px;padding:36px;width:min(480px,calc(100vw - 32px));position:relative}
+.modal h3{font-size:24px;margin-bottom:6px}
+.modal .sub{color:var(--muted);margin-bottom:24px;font-size:15px}
+.close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);font-size:22px;cursor:pointer}
+.close:hover{background:rgba(255,255,255,.08)}
+form{display:grid;gap:14px}
+label{display:grid;gap:6px;font-size:14px;color:var(--muted)}
+input,select,textarea{font:inherit;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+input:user-invalid{border-color:#e5484d}
+textarea{resize:vertical;min-height:80px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px}
+.consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--accent)}
+form .btn{justify-content:center;margin-top:6px}
+.ok{text-align:center;padding:20px 0}
+.ok b{font-size:48px;display:block}
+.lightbox img{max-width:92vw;max-height:88vh;border-radius:14px}
+.lightbox .close{position:fixed;top:16px;right:16px;background:rgba(0,0,0,.5)}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:rgba(0,0,0,.5);color:#fff;font-size:24px;cursor:pointer}
+.lb-prev{left:16px}.lb-next{right:16px}
+
+/* floating */
+.fab{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;flex-direction:column;gap:12px}
+.fab a,.fab button{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.5);border:0;cursor:pointer;font-size:24px}
+.fab .f-tg{background:#2aabee;color:#fff}
+.fab .f-call{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#141008}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a class="logo" href="#">GALLERY <span>AUTO</span> IMPORT</a>
+    <nav>
+      <a href="#how">Как работаем</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="nav-right">
+      <button class="btn btn-ghost nav-gal" data-open-gal>Привезённые авто</button>
+      <a class="tel" href="tel:+79000908030">+7 900 090-80-30</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Челябинск · Авто из Кореи под ключ</p>
+    <h1>Привезём автомобиль <em>вашей мечты</em> — честно, быстро, с отчётом на каждом этапе</h1>
+    <p class="lead">Подбираем, осматриваем и выкупаем авто на аукционах и площадках Кореи. Доставка, таможня, оформление — и красивая выдача в нашем офисе.</p>
+    <div class="actions">
+      <button class="btn btn-gold" data-open-form>Оставить заявку →</button>
+      <a class="btn btn-ghost" href="https://t.me/autogallerychel" target="_blank" rel="noopener">Наш Telegram-канал</a>
+    </div>
+    <div class="stats">
+      <div><b>5.0</b><span>рейтинг в 2ГИС</span></div>
+      <div><b>38</b><span>оценок клиентов</span></div>
+      <div><b>~35</b><span>дней до выдачи</span></div>
+      <div><b>100%</b><span>фото и видео отчёты</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow reveal">Как мы работаем</p>
+    <h2 class="reveal">От заявки до ключей в руках</h2>
+    <p class="lead reveal">Весь путь прозрачен: вы видите, где машина и что с ней происходит, на каждом шаге.</p>
+    <div class="steps">
+      <div class="step reveal"><h3>Заявка и консультация</h3><p>Обсуждаем бюджет, марку, комплектацию. Подсказываем, как не переплатить.</p></div>
+      <div class="step reveal"><h3>Подбор и осмотр</h3><p>Находим варианты в Корее и присылаем полный фото- и видеоосмотр, часто уже в течение суток.</p></div>
+      <div class="step reveal"><h3>Выкуп</h3><p>Оперативно выкупаем выбранный автомобиль, пока его не забрали другие.</p></div>
+      <div class="step reveal"><h3>Доставка</h3><p>Корея → Владивосток → Челябинск. Отчёт о погрузке и перемещении на каждом этапе.</p></div>
+      <div class="step reveal"><h3>Таможня и оформление</h3><p>Берём на себя растаможку и документы, следим за изменениями утильсбора.</p></div>
+      <div class="step reveal"><h3>Выдача</h3><p>Подготовленный, чистый автомобиль и торжественная выдача в нашем новом офисе.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap why-grid">
+    <div class="why-img reveal"><img src="img/34.jpg" alt="Выдача автомобиля в офисе Gallery Auto Import" loading="lazy"></div>
+    <div>
+      <p class="eyebrow reveal">Почему мы</p>
+      <h2 class="reveal">За нас говорят клиенты</h2>
+      <ul>
+        <li class="reveal"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></i><div><b>Быстро</b><span>Средний срок от оплаты до выдачи — 28–35 дней. Часто раньше оговорённого.</span></div></li>
+        <li class="reveal"><i><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg></i><div><b>Прозрачно</b><span>Фото и видео с парковки в Корее, порта во Владивостоке, погрузки на автовоз.</span></div></li>
+        <li class="reveal"><i><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></i><div><b>Всегда на связи</b><span>Персональный менеджер сопровождает сделку от первого звонка до ключей.</span></div></li>
+        <li class="reveal"><i><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L12 16.4l-5.3 2.9 1.1-5.9-4.4-4.1 6-.8z"/></svg></i><div><b>Выдача-событие</b><span>Покрывало, цветы, шампанское — получение авто запоминается надолго.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Расскажите, какую машину хотите</h2>
+      <p class="lead">Перезвоним, посчитаем стоимость «под ключ» и подберём варианты. Бесплатно и ни к чему не обязывает.</p>
+      <button class="btn btn-gold" data-open-form>Получить подбор →</button>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="why">
+  <div class="wrap">
+    <div class="reviews-head">
+      <div>
+        <p class="eyebrow reveal">Отзывы</p>
+        <h2 class="reveal">Что говорят клиенты</h2>
+      </div>
+      <a class="rating reveal" href="https://2gis.ru/chelyabinsk/firm/70000001109868862/tab/reviews" target="_blank" rel="noopener">
+        <b>5.0</b><div><span class="stars">★★★★★</span><small>38 оценок · 2ГИС ↗</small></div>
+      </a>
+    </div>
+    <div class="reviews" id="rev"></div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <p class="eyebrow reveal">Контакты</p>
+    <h2 class="reveal">Приезжайте в гости</h2>
+    <div class="contacts">
+      <div class="info reveal">
+        <div><small>Телефон</small><a class="big" href="tel:+79000908030">+7 900 090-80-30</a></div>
+        <div><small>Адрес</small>Челябинск, пос. Шершни,<br>ул. Центральная, 10/1</div>
+        <div><small>Режим работы</small>с 10:00, лучше заранее позвонить</div>
+        <div><small>Telegram</small><a href="https://t.me/autogallerychel" target="_blank" rel="noopener">@autogallerychel ↗</a></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-ghost" href="https://2gis.ru/chelyabinsk/firm/70000001109868862" target="_blank" rel="noopener">Маршрут в 2ГИС</a>
+          <button class="btn btn-gold" data-open-form>Заявка</button>
+        </div>
+      </div>
+      <div class="map reveal">
+        <iframe title="Gallery Auto Import на карте" loading="lazy" src="https://yandex.ru/map-widget/v1/?ll=61.308349%2C55.150487&z=16&pt=61.308349%2C55.150487%2Cpm2rdl"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© Gallery Auto Import, Челябинск</span>
+    <span>Продажа и привоз автомобилей из Кореи</span>
+  </div>
+</footer>
+
+<div class="fab">
+  <a class="f-tg" href="https://t.me/autogallerychel" target="_blank" rel="noopener" aria-label="Telegram">✈</a>
+  <a class="f-call" href="tel:+79000908030" aria-label="Позвонить">📞</a>
+</div>
+
+<dialog id="form-dlg">
+  <div class="modal">
+    <button class="close" aria-label="Закрыть" data-close>×</button>
+    <div id="form-body">
+      <h3>Заявка на подбор авто</h3>
+      <p class="sub">Оставьте контакты — менеджер свяжется с вами в ближайшее время.</p>
+      <form id="lead">
+        <label>Имя<input name="name" required autocomplete="name" maxlength="60"></label>
+        <label>Телефон<input name="phone" type="tel" required autocomplete="tel" placeholder="+7 900 000-00-00" pattern="[+0-9\s()\-]{10,20}" title="Номер телефона, например +7 900 000-00-00"></label>
+        <label>Какой автомобиль интересует<input name="car" placeholder="Например: BMW X5, до 2022 г." maxlength="120"></label>
+        <label>Бюджет
+          <select name="budget">
+            <option value="">Не определился</option>
+            <option>до 3 млн ₽</option>
+            <option>3–5 млн ₽</option>
+            <option>5–8 млн ₽</option>
+            <option>от 8 млн ₽</option>
+          </select>
+        </label>
+        <label>Комментарий<textarea name="comment" maxlength="500"></textarea></label>
+        <label class="consent"><input type="checkbox" required> Согласен на обработку персональных данных</label>
+        <button class="btn btn-gold" type="submit">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="gal-dlg">
+  <div class="modal gal-modal">
+    <button class="close" aria-label="Закрыть" data-close>×</button>
+    <h3>Привезённые автомобили и выдачи клиентам</h3>
+    <div class="gallery" id="gal"></div>
+    <div class="more"><a class="btn btn-ghost" href="https://2gis.ru/chelyabinsk/firm/70000001109868862/tab/photos" target="_blank" rel="noopener">Все фото в 2ГИС ↗</a></div>
+  </div>
+</dialog>
+
+<dialog id="lb" class="lightbox">
+  <button class="close" aria-label="Закрыть" data-close>×</button>
+  <button class="lb-nav lb-prev" aria-label="Предыдущее фото">‹</button>
+  <img alt="">
+  <button class="lb-nav lb-next" aria-label="Следующее фото">›</button>
+</dialog>
+
+<script>
+const PHOTOS = [34,8,2,11,7,25,13,9,15,23,31,1,27,10,22,5,24,30,35,14,28,4,36,29,17,6,21,26,18,3,33,37,38,39,12,16,32].map(n => `img/${n}.jpg`);
+
+const REVIEWS = [
+  ["Р У","28 ноября 2025","Покупал через ребят автомобиль, Ауди а6, осмотрели 3 автомобиля, самую лучшую купили, привезли за 35 дней, очень доволен 👍🏻"],
+  ["E P","28 ноября 2025","Привозили не одну машину через ребят, все отлично прозрачно и без головной боли! Рекомендую!"],
+  ["Сергей Юсупкулов","28 ноября 2025","Заказывал у ребят авто, отзывчивость и коммуникация просто на высоте👍🏻 Привезли очень быстро (с момента оплаты до момента вручения 28 дней). Перед выдачей подготовили авто, помыли."],
+  ["Руслан Фазылов","28 ноября 2025","Заказал у ребят мечту! Выбирать помогали как себе! Хранили, перевозили, выдали — как родному! Уровень и сервис у ребят на 100%"],
+  ["Евгения В","28 ноября 2025","Обратились к ребятам за поиском автомобиля BMW X4! Машина была найдена оперативно и в очень хорошей комплектации! Покупкой остались довольны."],
+  ["Тимофей Пастушок","5 декабря 2025","Покупал в данной компании BMW X7, все сделали очень быстро и удобно, смело можно работать!"],
+  ["Артур Саитхужин","29 ноября 2025","Обратился за подбором авто из Кореи. Очень переживал за весь процесс, но ребята отлажено все сделали, весь процесс отслеживался, никто никуда не пропадал, всегда на связи!"],
+  ["Светлана Игнатович","29 ноября 2025","Спасибо за профессионализм на каждом этапе, обратную связь, понимание! Доставка автомобиля прошла отлично!"],
+  ["Дамир Камалов","1 декабря 2025","Отличная компания! Привезли авто без никаких заморочек! Все четко! Рекомендую всем!"],
+];
+
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+$('#rev').innerHTML = REVIEWS.map(([n,d,t]) => `
+  <article class="review reveal">
+    <span class="stars">★★★★★</span>
+    <p>${esc(t)}</p>
+    <footer><span class="avatar">${esc(n.split(' ').map(w=>w[0]).join('').slice(0,2))}</span><div><b>${esc(n)}</b><small>${d} · 2ГИС</small></div></footer>
+  </article>`).join('');
+
+$('#gal').innerHTML = PHOTOS.map((p,i) => `<button data-i="${i}" aria-label="Открыть фото ${i+1}"><img src="${p}" alt="Фото Gallery Auto Import ${i+1}" loading="lazy"></button>`).join('');
+
+// lightbox
+const lb = $('#lb'), lbImg = lb.querySelector('img'); let cur = 0;
+const show = i => { cur = (i + PHOTOS.length) % PHOTOS.length; lbImg.src = PHOTOS[cur]; };
+$('#gal').onclick = e => { const b = e.target.closest('button'); if (b) { show(+b.dataset.i); lb.showModal(); } };
+lb.querySelector('.lb-prev').onclick = () => show(cur - 1);
+lb.querySelector('.lb-next').onclick = () => show(cur + 1);
+lb.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+
+// dialogs: close button + click on backdrop
+document.querySelectorAll('dialog').forEach(d => d.addEventListener('click', e => {
+  if (e.target === d || e.target.closest('[data-close]')) d.close();
+}));
+const formDlg = $('#form-dlg'), formBody = $('#form-body').innerHTML;
+document.querySelectorAll('[data-open-form]').forEach(b => b.onclick = () => formDlg.showModal());
+document.querySelector('[data-open-gal]').onclick = () => $('#gal-dlg').showModal();
+
+// ponytail: the lead is not sent anywhere yet — hook up a Telegram bot / CRM webhook here.
+document.addEventListener('submit', e => {
+  if (e.target.id !== 'lead') return;
+  e.preventDefault();
+  $('#form-body').innerHTML = `<div class="ok"><b>✓</b><h3>Заявка принята!</h3><p class="sub">Менеджер свяжется с вами в ближайшее время. Срочно? Звоните: <a href="tel:+79000908030" style="color:var(--accent2)">+7 900 090-80-30</a></p></div>`;
+});
+formDlg.addEventListener('close', () => { $('#form-body').innerHTML = formBody; });
+
+// header + reveal
+const hdr = $('#top');
+addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 40), { passive: true });
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
